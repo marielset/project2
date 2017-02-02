@@ -57,7 +57,13 @@ for line in fls3:
     python_course_paths = python_course_paths + len(p)
 
 ## (d) Write Python code to determine how many of these paths describe a Microsoft file (a file that EITHER ends with .docx OR .xlsx, but nothing else counts) where the file name ends in a digit. Save that total in the variable microsoft_files_num.
-
+microsoft_files_num = 0
+fls4 = open('computer_paths.txt')
+for line in fls4:
+    q = re.findall('.+\d\.docx', line)
+    l = re.findall('.+\d\.xlsx', line)
+    microsoft_files_num = microsoft_files_num + len(q) 
+    microsoft_files_num = microsoft_files_num + len(l)
 
 
 

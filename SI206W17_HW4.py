@@ -16,13 +16,13 @@ from bs4 import BeautifulSoup
 
 cache_filename = "nytimes_data.html"
 try:
-	f = open(cache_filename, 'r')
-	text_data_from_site = f.read()
+	f = open(cache_filename,'r')  
+	text_data_from_site = f.read() 
 	f.close()
 except:
 	r = requests.get("http://www.nytimes.com")
-	test_data_from_site = r.text
-	f = open(cache_filename, "w")
+	text_data_from_site = r.text 
+	f = open(cache_filename,'w') 
 	f.write(text_data_from_site)
 	f.close()
 
@@ -33,7 +33,16 @@ soup = BeautifulSoup(text_data_from_site, 'html.parser')
 
 ## PART 2 (200 points)
 ## Write code to get the first 10 headlines from the New York Times, based on the data you saved in the file in Part 1, and save those strings in a list called nytimes_headlines. 
-nytimes_headlines = {}
+nytimes_headlines = []
+for heading in soup.find_all(class_ = 'story-heading')[:10]:
+	if heading.a:
+		headline = heading.a.text.replace("\n", " ").strip()
+		nytimes_headlines.append(headline)
+	else:
+		headline = heading.contents[0].strip()
+		nytimes_headlines.append(headline)
+
+
 ## Note that you will almost certainly need to do some investigation on the http://nytimes.com website to do this correctly, even after saving the file in Part 1.
 
 ## The strings that should be elements of your lists will be different depending upon when you accessed the data, but they should probably be somewhat like this:
@@ -87,8 +96,18 @@ umsi_titles = {}
 ## Find the container that holds the name that belongs to that person (HINT: look for something unique, like a property element...)
 ## Find the container that holds the title that belongs to that person (HINT: a class name)
 ## Grab the text of each of those elements and put them in the dictionary umsi_titles properly
+tempNameList = []
+for el in soup.find_all(attrs={"property":"dc:title"}):
+	name = el.text
+	tempNameList.append(name)
 
+tempProfList = []
+for title in soup.find_all(class_="field field-name-field-person-titles field-type-text field-label-hidden"):
+	dep = title.text
+	tempProfList.append(dep)
 
+for r in range(len(tempNameList)):
+	umsi_titles[tempNameList[r]] = tempProfList[r]
 
 
 
@@ -104,7 +123,7 @@ class HW4_Part2(unittest.TestCase):
 	def test_first_last_elem(self):
 		self.assertEqual(type(nytimes_headlines[0]),type(""), "Testing that the first type in the nytimes_headlines list is a string")
 		self.assertEqual(type(nytimes_headlines[-1]),type(""), "Testing that the last type in the nytimes_headlines list is a string")
-	def length_of_ten(self):
+	def test_length_of_ten(self):
 		self.assertEqual(len(nytimes_headlines),10, "Testing that there are ten headlines in the list")
 
 class HW4_Part3(unittest.TestCase):

@@ -20,11 +20,11 @@ try:
 	text_data_from_site = f.read()
 	f.close()
 except:
-	r = request.get("http://www.nytimes.com")
-	test_data_from_site = r.data
-	f = open(cache_filename, "w")
+	r = requests.get("http://www.nytimes.com")
+	test_data_from_site = r.text
+	f = open(cache_filename, 'w')
 	f.write(text_data_from_site)
-	f.close
+	f.close()
 
 soup = BeautifulSoup(text_data_from_site, 'html.parser')
 

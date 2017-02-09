@@ -22,7 +22,7 @@ try:
 except:
 	r = requests.get("http://www.nytimes.com")
 	test_data_from_site = r.text
-	f = open(cache_filename, 'w')
+	f = open(cache_filename, "w")
 	f.write(text_data_from_site)
 	f.close()
 
@@ -33,7 +33,7 @@ soup = BeautifulSoup(text_data_from_site, 'html.parser')
 
 ## PART 2 (200 points)
 ## Write code to get the first 10 headlines from the New York Times, based on the data you saved in the file in Part 1, and save those strings in a list called nytimes_headlines. 
-
+nytimes_headlines = {}
 ## Note that you will almost certainly need to do some investigation on the http://nytimes.com website to do this correctly, even after saving the file in Part 1.
 
 ## The strings that should be elements of your lists will be different depending upon when you accessed the data, but they should probably be somewhat like this:

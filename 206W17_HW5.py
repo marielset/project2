@@ -2,6 +2,7 @@ import unittest
 import tweepy 
 import requests 
 import json
+import twitter_info
 
 ## SI 206 - W17 - HW5 
 ## COMMENT WITH: 
@@ -34,10 +35,10 @@ import json
 ## **** If you choose not to do that, we strongly advise using authentication information for an 'extra' Twitter account you make just for this class, and not your personal account, because it's not ideal to share your authentication information for a real account that you use frequently.
 
 ## Get your secret values to authenticate to Twitter. You may replace each of these with variables rather than filling in the empty strings if you choose to do the secure way for 50 EC points 
-consumer_key = "iH5N11g2xxvrMx6wb58tcyjis" 
-consumer_secret = "9g5YtGBYeh1JGFKajawGe5ulzP9r4JCBVk6j2gfMGqfdakwx8r" 
-access_token = "833516681418928132-MadoU4SCeeX5LT8ScYD6FVNot5RhHDH" 
-access_token_secret = "nDKEdJnLq04pezym7hqxcm8b8XQn3gRedyFWYZweA6cjl" 
+consumer_key = twitter_info.consumer_key
+consumer_secret = twitter_info.consumer_secret
+access_token = twitter_info.access_token
+access_token_secret = twitter_info.access_token_secret
 ## Set up your authentication to Twitter 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret) 
 auth.set_access_token(access_token, access_token_secret)

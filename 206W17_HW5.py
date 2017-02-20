@@ -6,7 +6,7 @@ import json
 ## SI 206 - W17 - HW5 
 ## COMMENT WITH: 
 ## Your section day/time: Thursday 3-4
-## Any names of people you worked with on this assignment:
+## Any names of people you worked with on this assignment: Lauren Sigurdson
 
 ######## 500 points total ########
 
